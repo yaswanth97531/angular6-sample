@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-
+import { LoginComponent } from './../Components/login/login.component';
+import { HomeComponent } from './../Components/Home/home.component';
+import { AppRoutingModule } from './app.routing.module';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
-  imports: [BrowserModule, FormsModule, HttpModule],
+  declarations: [AppComponent, LoginComponent, HomeComponent],
+  imports: [BrowserModule, FormsModule, HttpModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })

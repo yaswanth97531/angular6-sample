@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './../login.service';
+import { LoginService } from './../../app/login.service';
+import { LoginResponse } from './../../Models/Login';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { LoginService } from './../login.service';
 export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
+  public loginResp: Array<LoginResponse> = [];
   constructor(private loginService: LoginService) {
     this.username = '';
     this.password = '';
@@ -21,8 +23,14 @@ export class LoginComponent implements OnInit {
     console.log(this.password);
     this.loginService
       .makeLoginServiceCall(this.username, this.password)
-      .subscribe(res => {
-        console.log(res.json());
-      });
+      .subscribe(
+        res => {
+          console.log(res.json());
+          this.loginResp.push(res.json());
+        },
+        error => {
+          console.log('Error', error);
+        }
+      );
   }
 }
